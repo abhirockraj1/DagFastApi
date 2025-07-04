@@ -39,8 +39,11 @@ class GraphResBody(BaseModel):
     num_edges: int = Field(..., description="The total number of directed edges in the graph.")
     is_dag: bool = Field(..., description="True if the graph is a Directed Acyclic Graph (DAG), False otherwise.")
     message: str = "Graph analysis complete."
-🚀 Usage1. Run the APINavigate to the root directory of your project (where main.py is located) in your terminal and run:uvicorn main:app --reload
-The API will be accessible at http://127.0.0.1:8000. The --reload flag enables auto-reloading on code changes, which is useful for development.2. Access API DocumentationOnce the server is running, you can access the interactive API documentation (Swagger UI) at:http://127.0.0.1:8000/docsThis interface allows you to test the API directly from your browser.3. API EndpointsPOST /analyze-graph/Analyzes a graph provided in the request body and returns its properties.URL: /analyze-graph/Method: POSTRequest Body: application/jsonSchema: GraphReqBody (defined in pydantic_models.py)Example:{
+🚀 Usage
+1. Run the APINavigate to the root directory of your project (where main.py is located) in your terminal and run:uvicorn main:app --reload
+The API will be accessible at http://127.0.0.1:8000. The --reload flag enables auto-reloading on code changes, which is useful for development.
+2. Access API DocumentationOnce the server is running, you can access the interactive API documentation (Swagger UI) at:http://127.0.0.1:8000/docsThis interface allows you to test the API directly from your browser.
+3. API EndpointsPOST /pipelines/parse a graph provided in the request body and returns its properties.URL: /analyze-graph/Method: POSTRequest Body: application/jsonSchema: GraphReqBody (defined in pydantic_models.py)Example:{
   "graph": {
     "A": ["B", "C"],
     "B": ["D"],
@@ -52,19 +55,16 @@ The API will be accessible at http://127.0.0.1:8000. The --reload flag enables a
 Response Body: application/jsonSchema: GraphResBody (defined in pydantic_models.py)Success Example (DAG):{
   "num_nodes": 5,
   "num_edges": 4,
-  "is_dag": true,
-  "message": "Graph analysis performed successfully."
+  "is_dag": true"
 }
 Success Example (Not a DAG - Cyclic):{
   "num_nodes": 3,
   "num_edges": 3,
-  "is_dag": false,
-  "message": "Graph analysis performed successfully."
+  "is_dag": false
 }
 Error Example (HTTP 500 Internal Server Error):{
   "detail": "An error occurred during graph analysis: <error_message>"
 }
-GET /A simple root endpoint to check if the API is running.URL: /Method: GETResponse Body: application/jsonExample:{
-  "message": "Graph analysis API is running!"
-}
-🤝 ContributingContributions are welcome! Please feel free to open issues or submit pull requests.📄 LicenseThis project is open-sourced under the MIT License.
+
+🤝 ContributingContributions are welcome! Please feel free to open issues or submit pull requests.
+📄 LicenseThis project is open-sourced under the MIT License.
