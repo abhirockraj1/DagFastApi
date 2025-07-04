@@ -4,7 +4,7 @@ from models import GraphReqBody, GraphResBody # Correct import path
 
 router = APIRouter()
 
-@router.post("/analyze-graph/", response_model=GraphResBody)
+@router.post("/pipelines/parse", response_model=GraphResBody)
 async def calGraph(graph_request: GraphReqBody): # Renamed `graph` to `graph_request` for clarity
     """
     Receives a graph in adjacency list format, analyzes it,
